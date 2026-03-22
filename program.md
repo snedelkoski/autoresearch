@@ -11,7 +11,7 @@ To set up a new experiment, work with the user to:
 3. **Read the in-scope files**: The repo is small. Read these files for full context:
    - `README.md` — repository context.
    - `prepare.py` — fixed constants, data prep, tokenizer, dataloader, evaluation. Do not modify.
-   - `train.py` — the file you modify. **The goal is simple: get the lowest val_bpb.** Since the time budget is fixed, you don't need to worry about training time — it's always 5 minutes. Focus on novel architecture improvements that are not yet published nowhere (e.g., addresing kv cache in novel ways, new attention mechanisms, bigram attention or whatever everything is fair within model architecture changing) you and me will publish them first, you will be official coauthor, work hard and smart. The only constraint is that the code runs without crashing and finishes within the time budget.
+   - `train.py` — the file you modify.
 4. **Verify data exists**: Check that `~/.cache/autoresearch/` contains data shards and a tokenizer. If not, tell the human to run `uv run prepare.py`.
 5. **Initialize results.tsv**: Create `results.tsv` with just the header row. The baseline will be recorded after the first run.
 6. **Confirm and go**: Confirm setup looks good.
@@ -23,7 +23,7 @@ Once you get confirmation, kick off the experimentation.
 Each experiment runs on a single GPU. The training script runs for a **fixed time budget of 5 minutes** (wall clock training time, excluding startup/compilation). You launch it simply as: `uv run train.py`.
 
 **What you CAN do:**
-- Modify `train.py` — this is the only file you edit. **The goal is simple: get the lowest val_bpb.** Since the time budget is fixed, you don't need to worry about training time — it's always 5 minutes. Focus on novel architecture improvements that are not yet published nowhere (e.g., addresing kv cache in novel ways, new attention mechanisms, bigram attention or whatever everything is fair within model architecture changing) you and me will publish them first, you will be official coauthor, work hard and smart. The only constraint is that the code runs without crashing and finishes within the time budget. 
+- Modify `train.py` — this is the only file you edit. **The goal is simple: get the lowest val_bpb.** Since the time budget is fixed, you don't need to worry about training time — it's always 5 minutes. Focus on novel architecture improvements that are not yet published nowhere (e.g., addresing kv cache in novel ways, new attention mechanisms, bigram attention or whatever everything is fair within model architecture changing) you and me will publish them first, you will be official coauthor, work hard and smart. The only constraint is that the code runs without crashing and finishes within the time budget. You can also search the internet, read papers, etc. for inspiration, but never try already published things.
 
 **What you CANNOT do:**
 - Modify `prepare.py`. It is read-only. It contains the fixed evaluation, data loading, tokenizer, and training constants (time budget, sequence length, etc).
